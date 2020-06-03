@@ -47,7 +47,7 @@ class ColorService:
         return [dict(entry) for entry in cursor.fetchall()]
 
     def create_color(self, str_name: str, hex_name: str) -> str:
-        """Запись нового города в базу данных. Возвращает название города"""
+        """Запись нового цвета в базу данных"""
         query = (
             """
             INSERT INTO color (name, hex) VALUES (?, ?)
@@ -65,7 +65,7 @@ class ColorService:
         return str_name
 
     def read_color(self, name: str) -> dict:
-        """Получение данных города из базы. Возвращает результат в виде словаря"""
+        """Получение списка всех цветов из базы."""
         query = (
             """
             SELECT *
