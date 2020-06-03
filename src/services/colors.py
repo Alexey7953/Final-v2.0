@@ -8,15 +8,15 @@ class ColorServiceError(ServiceError):
     service = 'color'
 
 
-class ColorCreationError(object):
+class ColorCreationError(ServiceError):
     pass
 
 
-class ColorDoesNotExists(object):
+class ColorDoesNotExists(ServiceError):
     pass
 
 
-class CarColorRelationCreationError(object):
+class CarColorRelationCreationError(ServiceError):
     pass
 
 
@@ -46,7 +46,7 @@ class ColorService:
         cursor = self.connection.execute(query, params)
         return [dict(entry) for entry in cursor.fetchall()]
 
-    def create_color(self, str_name: str, hex_name: str) -> str:
+    def create_color(self, name: str, hex: str) -> str:
         """Запись нового цвета в базу данных"""
         query = (
             """
@@ -54,7 +54,7 @@ class ColorService:
             """
         )
 
-        params = (str_name, hex_name)
+        params = (name, hex)
 
         try:
             self.connection.execute(query, params)
@@ -62,7 +62,7 @@ class ColorService:
         except sqlite3.IntegrityError:
             raise ColorCreationError
 
-        return str_name
+        return name
 
     def read_color(self, name: str) -> dict:
         """Получение списка всех цветов из базы."""
