@@ -2,7 +2,7 @@ from flask.views import MethodView
 from flask import Blueprint, jsonify, request
 
 from src.database import db
-from services.colors import ColorService
+from src.services.colors import ColorService
 
 bp = Blueprint('color', __name__)
 
