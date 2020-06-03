@@ -57,7 +57,7 @@ class SellersService:
             """
             SELECT seller.phone, seller.zip_code, seller.street, seller.home, zipcode.city_id
             FROM seller
-                JOIN zipcode ON seller.zip_code = zipcode.zip_code AND seller.phone
+                JOIN zipcode ON seller.zip_code = zipcode.zip_code 
             """
         )
         if seller_id is not None:
